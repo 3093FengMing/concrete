@@ -1,5 +1,13 @@
 {
   "item.concrete.book_of_songs": "《诗经》",
-  "item.concrete.song_guan_ju": "《关雎》",
-  "item.concrete.concrete_guan_ju": "《关雎》"
+  "item.concrete.abstract_song_": "空诗卷",
+  "item.concrete.abstract_song_guan_ju": "《关雎》",
+  "item.concrete.concrete_guan_ju": "《关雎》",
+  "tooltitp.concrete.guan_ju.desc.1": "关关雎鸠，在河之洲。窈窕淑女，君子好逑。",
+  "tooltitp.concrete.guan_ju.skill.1.name": "关关雎鸠，在河之洲。窈窕淑女，君子好逑。",
+  "tooltitp.concrete.guan_ju.skill.1.desc": "关关雎鸠，在河之洲。窈窕淑女，君子好逑。",
+  "tooltitp.concrete.guan_ju.skill.2.name": "关关雎鸠，在河之洲。窈窕淑女，君子好逑。",
+  "tooltitp.concrete.guan_ju.skill.2.desc": "关关雎鸠，在河之洲。窈窕淑女，君子好逑。",
+  "tooltitp.concrete.guan_ju.skill.3.name": "关关雎鸠，在河之洲。窈窕淑女，君子好逑。",
+  "tooltitp.concrete.guan_ju.skill.3.desc": "关关雎鸠，在河之洲。窈窕淑女，君子好逑。"
 }

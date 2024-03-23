@@ -1,36 +1,45 @@
 package me.fengming.concrete.network.entity;
 
+import me.fengming.concrete.capability.ModCapabilities;
 import me.fengming.concrete.capability.entity.CountCapability;
+import me.fengming.concrete.client.data.SyncedData;
+import net.minecraft.client.Minecraft;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.Entity;
+import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.network.NetworkEvent;
 
 import java.util.UUID;
 import java.util.function.Supplier;
 
-public class CountCapabilitySyncPacket {
+public class CapabilitySyncPacket {
     private final UUID uuid;
-    private final CountCapability capability;
+    private final CompoundTag nbt;
 
-    public CountCapabilitySyncPacket(FriendlyByteBuf buf) {
+    public CapabilitySyncPacket(FriendlyByteBuf buf) {
         this.uuid = buf.readUUID();
-        this.capability = buf.readNbt();
+        this.nbt = buf.readNbt();
     }
 
-    public CountCapabilitySyncPacket(Entity entity, CountCapability capability) {
+    public CapabilitySyncPacket(Entity entity, INBTSerializable<CompoundTag> capability) {
         this.uuid = entity.getUUID();
-        this.capability = capability;
+        this.nbt = capability.serializeNBT();
     }
 
     public void toBytes(FriendlyByteBuf buf) {
         buf.writeUUID(this.uuid);
-        buf.writeNbt(this.capability.serializeNBT());
+        buf.writeNbt(this.nbt);
     }
 
-    public void handler(Supplier<NetworkEvent.Context> ctx) {
-        ctx.get().enqueueWork(() -> {
-            LOGGER.info(this.message);
+    public void mainHandler(Supplier<NetworkEvent.Context> ctx_) {
+        NetworkEvent.Context ctx = ctx_.get();
+        ctx.enqueueWork(() -> {
+            assert Minecraft.getInstance().level != null;
+            Entity entity = Minecraft.getInstance().level.getEntities().get(this.uuid);
+            assert entity != null;
+            entity.getCapability(ModCapabilities.COUNT_CAPABILITY).orElse(new CountCapability()).deserializeNBT(this.nbt);
         });
-        ctx.get().setPacketHandled(true);
+        ctx.setPacketHandled(true);
     }
 }

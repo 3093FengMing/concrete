@@ -1,4 +1,4 @@
-package me.fengming.concrete.blocks;
+package me.fengming.concrete.block;
 
 import me.fengming.concrete.Concrete;
 import net.minecraft.world.level.block.Block;

@@ -1,5 +1,15 @@
 {
   "item.concrete.book_of_songs": "\"The Book of The Songs\"",
-  "item.concrete.song_guan_ju": "\"Guan Ju\"",
-  "item.concrete.concrete_guan_ju": "\"Guan Ju\""
+  "item.concrete.abstract_song_": "Null Song",
+  "item.concrete.abstract_song_guan_ju": "\"Guan Ju\"",
+  "item.concrete.concrete_guan_ju": "\"Guan Ju\"",
+  "tooltitp.concrete.guan_ju.desc.1": "“关关雎鸠，在河之洲。窈窕淑女，君子好逑。”",
+  "tooltitp.concrete.guan_ju.skill.1.name": "左右流之",
+  "tooltitp.concrete.guan_ju.skill.1.desc": "（被动）\n拿在手上时增加6%的移速。",
+  "tooltitp.concrete.guan_ju.skill.2.name": "左右采之",
+  "tooltitp.concrete.guan_ju.skill.2.desc": "（被动）\n使用该物品破坏任意植物时有小概率恢复当前最大生命值的5%。",
+  "tooltitp.concrete.guan_ju.skill.3.name": "左右芼之",
+  "tooltitp.concrete.guan_ju.skill.3.desc": "（主动）\n击中一个实体时，该实体有概率被绿色三角标记。\n之后连续击中三次以上，可触发「参差荇菜」。",
+  "tooltitp.concrete.guan_ju.skill.4.name": "「参差荇菜」",
+  "tooltitp.concrete.guan_ju.skill.4.desc": "（主动）\n对目标造成300%的攻击伤害，并召唤若干株「荇菜」。\n每株「荇菜」会对附近的生物造成近战伤害，一分钟后死亡。\n「荇菜」无法被击退，无法移动。"
 }

@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:item/generated",
+  "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "concrete:item/book_of_songs"
+    "layer0": "concrete:item/concrete_guan_ju"
   }
 }

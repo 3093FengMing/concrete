@@ -1,8 +1,8 @@
-package me.fengming.concrete.items;
+package me.fengming.concrete.item;
 
 import me.fengming.concrete.Concrete;
-import me.fengming.concrete.items.songs.AbstractSongItem;
-import me.fengming.concrete.items.songs.ConcreteGuanJu;
+import me.fengming.concrete.item.song.AbstractSongItem;
+import me.fengming.concrete.item.song.ConcreteGuanJu;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;

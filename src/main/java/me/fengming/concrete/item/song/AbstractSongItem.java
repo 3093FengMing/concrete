@@ -1,4 +1,4 @@
-package me.fengming.concrete.items.songs;
+package me.fengming.concrete.item.song;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;

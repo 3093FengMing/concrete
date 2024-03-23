@@ -1,18 +1,22 @@
-package me.fengming.concrete.client.render.models;
+package me.fengming.concrete.client.model;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import me.fengming.concrete.Concrete;
-import me.fengming.concrete.entities.NPeltata;
+import me.fengming.concrete.entity.NPeltata;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public class NPeltataModel extends EntityModel<NPeltata> {
-    public static final ModelLayerLocation MODEL_LAYER = new ModelLayerLocation(new ResourceLocation(Concrete.MODID, "textures/entity/n_peltata"), "main");
+
+    public static final ModelLayerLocation N_PELTATA_LOCATION = new ModelLayerLocation(new ResourceLocation(Concrete.MODID, "textures/entity/n_peltata.png"), "main");
     private final ModelPart body;
     private final ModelPart head;
 

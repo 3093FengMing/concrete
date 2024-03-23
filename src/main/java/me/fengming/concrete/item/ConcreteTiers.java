@@ -1,4 +1,4 @@
-package me.fengming.concrete.items;
+package me.fengming.concrete.item;
 
 import me.fengming.concrete.Concrete;
 import net.minecraft.resources.ResourceLocation;
