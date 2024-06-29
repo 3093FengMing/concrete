@@ -2,7 +2,6 @@ package me.fengming.concrete.network.entity;
 
 import me.fengming.concrete.capability.ModCapabilities;
 import me.fengming.concrete.capability.entity.CountCapability;
-import me.fengming.concrete.client.data.SyncedData;
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;

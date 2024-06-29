@@ -27,6 +27,7 @@ import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3f;
 
@@ -34,7 +35,6 @@ import java.util.List;
 import java.util.UUID;
 
 public class ConcreteGuanJu extends Item {
-    private final Style SPECIAL_SKILL_NAME = Style.EMPTY.withColor(ChatFormatting.DARK_GREEN).withUnderlined(true).withBold(true);
     private final Style SKILL_NAME = Style.EMPTY.withColor(ChatFormatting.DARK_GREEN).withUnderlined(true);
     private final Style SKILL_DESC = Style.EMPTY.withColor(ChatFormatting.DARK_GRAY).withItalic(true);
     private final UUID MOVEMENT_SPEED_MODIFIER = UUID.fromString("9C03D873-98C0-8F8F-53F0-05BF90B07DCC");
@@ -81,7 +81,7 @@ public class ConcreteGuanJu extends Item {
             pEntityLiving.heal((pEntityLiving.getMaxHealth() + pEntityLiving.getAbsorptionAmount()) * 0.05F);
             pLevel.playSound(null, pEntityLiving.getOnPos(), SoundEvents.EXPERIENCE_ORB_PICKUP, SoundSource.AMBIENT, 0.6F, 0.2F);
             if (pLevel instanceof ServerLevel) {
-                ((ServerLevel)pLevel).sendParticles(new DustParticleOptions(new Vector3f(0.506F, 0.675F, 0.506F), 1.2F),
+                ((ServerLevel) pLevel).sendParticles(new DustParticleOptions(new Vector3f(0.506F, 0.675F, 0.506F), 1.2F),
                         pPos.getX(), pPos.getY() + 0.5D, pPos.getZ(),
                         4, 0.1D, 0.0D, 0.1D, 0.2D);
             }
@@ -115,10 +115,16 @@ public class ConcreteGuanJu extends Item {
         if (!world.isClientSide) {
             target.hurt(target.damageSources().mobAttack(attacker), 3.0F * (float) attacker.getAttributeValue(Attributes.ATTACK_DAMAGE));
             for (int i = 0; i < 2; i++) {
-                double x = target.getRandomX(2.5F);
+                double x = target.getX() + (world.random.nextDouble() - 0.5D) * 2.4D;
                 double y = target.getY();
-                double z = target.getRandomZ(2.5F);
-                world.addFreshEntity(new NPeltata(world, x, y, z, attacker));
+                double z = target.getZ() + (world.random.nextDouble() - 0.5D) * 2.4D;
+
+                NPeltata entity = new NPeltata(world, x, y, z, attacker);
+                world.addFreshEntity(entity);
+                if (entity.randomTeleport(x, y, z, true)) {
+                    world.gameEvent(GameEvent.TELEPORT, target.position(), GameEvent.Context.of(target));
+                }
+
             }
         }
         return true;

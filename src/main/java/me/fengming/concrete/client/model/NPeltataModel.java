@@ -24,6 +24,7 @@ public class NPeltataModel extends EntityModel<NPeltata> {
         this.body = root.getChild("body");
         this.head = root.getChild("head");
     }
+
     public static LayerDefinition createBodyLayer() {
         MeshDefinition meshdefinition = new MeshDefinition();
         PartDefinition partdefinition = meshdefinition.getRoot();

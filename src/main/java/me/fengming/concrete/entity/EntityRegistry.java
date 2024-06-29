@@ -16,6 +16,7 @@ public class EntityRegistry {
                     .clientTrackingRange(8)
                     .build("n_peltata")
     );
+
     public static void register(IEventBus bus) {
         ENTITY_TYPES.register(bus);
     }

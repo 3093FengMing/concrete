@@ -10,7 +10,8 @@ import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.capabilities.CapabilityToken;
 
 public class ModCapabilities {
-    public static Capability<CountCapability> COUNT_CAPABILITY = CapabilityManager.get(new CapabilityToken<>(){});
+    public static Capability<CountCapability> COUNT_CAPABILITY = CapabilityManager.get(new CapabilityToken<>() {
+    });
 
     public static int getCount(Entity entity, String id) {
         return entity.getCapability(COUNT_CAPABILITY).orElse(new CountCapability(id)).getCount(id);

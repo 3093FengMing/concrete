@@ -5,6 +5,7 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -31,6 +32,7 @@ import java.util.UUID;
 
 public class NPeltata extends PathfinderMob implements OwnableEntity {
     private static final EntityDataAccessor<Optional<UUID>> DATA_OWNER_UUID = SynchedEntityData.defineId(NPeltata.class, EntityDataSerializers.OPTIONAL_UUID);
+
     public NPeltata(EntityType<? extends PathfinderMob> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
         this.setOwner(null);
@@ -44,7 +46,7 @@ public class NPeltata extends PathfinderMob implements OwnableEntity {
 
     public static AttributeSupplier.Builder createAttributes() {
         return Mob.createLivingAttributes()
-                .add(Attributes.MAX_HEALTH, 15.0D)
+                .add(Attributes.MAX_HEALTH, 10.0D)
                 .add(Attributes.FOLLOW_RANGE, 3.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.0D)
                 .add(Attributes.ARMOR_TOUGHNESS, 2.0D)
@@ -63,6 +65,16 @@ public class NPeltata extends PathfinderMob implements OwnableEntity {
         this.targetSelector.addGoal(2, new NPeltataOwnerHurtTargetGoal(this));
         this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setAlertOthers());
         this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, Monster.class, 5, true, true, null));
+    }
+
+    @Override
+    public boolean hurt(DamageSource pSource, float pAmount) {
+        boolean bl = super.hurt(pSource, pAmount);
+        if (this.getHealth() <= 0.0f) {
+            this.discard();
+            return false;
+        }
+        return bl;
     }
 
     protected static class NPeltataOwnerHurtByTargetGoal extends TargetGoal {
@@ -163,13 +175,13 @@ public class NPeltata extends PathfinderMob implements OwnableEntity {
     @Nullable
     @Override
     protected SoundEvent getHurtSound(DamageSource pDamageSource) {
-        return null;
+        return SoundEvents.WET_GRASS_BREAK;
     }
 
     @Nullable
     @Override
     protected SoundEvent getDeathSound() {
-        return null;
+        return SoundEvents.AZALEA_BREAK;
     }
 
     @Override
@@ -200,14 +212,6 @@ public class NPeltata extends PathfinderMob implements OwnableEntity {
     @Override
     public boolean canBeLeashed(Player pPlayer) {
         return false;
-    }
-
-    @Override
-    protected void tickDeath() {
-        if (!this.level().isClientSide() && !this.isRemoved()) {
-            this.level().broadcastEntityEvent(this, (byte)60);
-            this.remove(Entity.RemovalReason.KILLED);
-        }
     }
 
     public void setOwner(UUID uuid) {

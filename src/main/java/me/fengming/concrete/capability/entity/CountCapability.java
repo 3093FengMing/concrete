@@ -1,7 +1,6 @@
 package me.fengming.concrete.capability.entity;
 
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.entity.Entity;
 import net.minecraftforge.common.util.INBTSerializable;
 
 import java.util.HashMap;
@@ -9,7 +8,8 @@ import java.util.HashMap;
 public class CountCapability implements INBTSerializable<CompoundTag> {
     private final HashMap<String, Integer> counts = new HashMap<>();
 
-    public CountCapability() {}
+    public CountCapability() {
+    }
 
     public CountCapability(String id) {
         counts.put(id, 0);

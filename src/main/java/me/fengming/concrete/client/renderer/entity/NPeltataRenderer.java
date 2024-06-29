@@ -1,4 +1,4 @@
-package me.fengming.concrete.client.renderer;
+package me.fengming.concrete.client.renderer.entity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import me.fengming.concrete.Concrete;
@@ -16,6 +16,7 @@ public class NPeltataRenderer extends MobRenderer<NPeltata, NPeltataModel> {
     public NPeltataRenderer(EntityRendererProvider.Context pContext) {
         super(pContext, new NPeltataModel(pContext.bakeLayer(NPeltataModel.N_PELTATA_LOCATION)), 0.0f);
     }
+
     @Override
     public ResourceLocation getTextureLocation(NPeltata pEntity) {
         return new ResourceLocation(Concrete.MODID, "textures/entity/n_peltata.png");
